@@ -23,7 +23,7 @@ Frame
             manager: ItemManager
         }
 
-        MyItem
+        MyItem//my item, developed on C++
         {
             id: myItem
             edgeNum: model.edges
@@ -105,19 +105,24 @@ Frame
                 }
             }
 
-            states: [
-                State {
+            states:
+                [
+                State
+                {
                     name: "initial"
                     PropertyChanges {target: myItem; width: itemSize; height: itemSize}
                 },
-                State {
+                State
+                {
                     name: "dissapearing"
                     PropertyChanges {target: myItem; width: 0; height: 0}
                 }
 
             ]
-            transitions: [
-                Transition{
+            transitions:
+                [
+                Transition
+                {
                     id: transition
                     from: "initial";
                     to: "dissapearing"

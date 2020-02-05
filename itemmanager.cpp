@@ -46,12 +46,16 @@ int ItemManager::getEdgeCount(int index)
 {
     if (index < items.count())
         return items.at(index)->edgeNum;
+    else
+        return 0;
 }
 
 QColor ItemManager::getColorValue(int index)
 {
     if (index < items.count())
         return items.at(index)->color;
+    else
+        return QColor(Qt::green);
 }
 
 void ItemManager::itemClicked(int index)

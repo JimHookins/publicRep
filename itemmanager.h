@@ -18,29 +18,16 @@ class MyItemData : public QObject
 {
     Q_OBJECT
 public:
-    MyItemData()
-    {
-        timerId = startTimer(lifespan);
-    }
+    MyItemData(QObject *parent = Q_NULLPTR) : QObject(parent){}
     MyItemData(const MyItemData &item)
-        : x(item.x)
+        : QObject(item.parent())
+        , x(item.x)
         , y(item.y)
         , edgeNum(item.edgeNum)
         , color(item.color)
         , lifespan(item.lifespan)
     {
-//        timerId = startTimer(lifespan);
-    }
-
-    MyItemData& operator=(const MyItemData &item)
-    {
-        x = item.x;
-        y = item.y;
-        edgeNum = item.edgeNum;
-        color = item.color;
-        lifespan = item.lifespan;
-
-//         timerId = startTimer(lifespan);
+        timerId = startTimer(lifespan);
     }
 
     qreal x = 0;
