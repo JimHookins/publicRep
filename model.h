@@ -1,6 +1,7 @@
 #ifndef MODEL_H
 #define MODEL_H
 
+/* Automatically created item model */
 #include <QAbstractListModel>
 
 class ItemManager;

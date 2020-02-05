@@ -28,6 +28,7 @@ int main(int argc, char *argv[])
 
     QObject * rootObj = component.create();
 
+    //connect qml controls to C++ slots
     QObject * rangeSlider = rootObj->findChild<QObject*>("rangeSlider");
     if (rangeSlider)
     {
