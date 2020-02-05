@@ -1,6 +1,8 @@
 #pragma once
 #include <QQuickPaintedItem>
+#include <QPolygon>
 class QPainter;
+class QPolygon;
 
 class MyItem : public QQuickPaintedItem
 {
@@ -11,7 +13,7 @@ class MyItem : public QQuickPaintedItem
     Q_PROPERTY(int radius READ radius WRITE setRadius)
 
 public:
-    MyItem();
+    MyItem(QQuickItem* pqi = 0);
     void paint(QPainter *painter);
 
     QColor colorValue() const;
@@ -23,10 +25,13 @@ public:
     int radius() const;
     void setRadius(int value);
 
+    Q_INVOKABLE bool insideItem(int x, int y);
+
 private:
     QColor m_color;
     int m_edgeNum;
     int mRadius;
+    QPolygon self;
 
 signals:
 

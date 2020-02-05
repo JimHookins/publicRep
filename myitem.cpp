@@ -1,21 +1,22 @@
 #include "myitem.h"
 #include <QPainter>
+//#include <QPolygon>
 #include <qmath.h>
 #define DEAFAULT_R  50
 #define EDGES       3
 
-MyItem::MyItem()
-    : m_color(Qt::green)
+MyItem::MyItem(QQuickItem *pqi)
+    : QQuickPaintedItem(pqi)
+    , m_color(Qt::green)
     , m_edgeNum(EDGES)
 {
-
 }
 
 void MyItem::paint(QPainter *painter)
 {
     int n = m_edgeNum;
-    QPoint * points = new QPoint [n];
-
+    QVector<QPoint> points;
+    points.resize(n);
     qreal angle = 360/n;
     int R = mRadius;
     qreal z = 0;
@@ -25,8 +26,11 @@ void MyItem::paint(QPainter *painter)
         points[i].setY(R - (qRound(qSin(z/180*M_PI)*R)));
         z = z + angle;
     }
+    painter->setRenderHint(QPainter::Antialiasing, true);
+    painter->setPen(Qt::NoPen);
     painter->setBrush(m_color);
-    painter->drawPolygon(points, n);
+    self = QPolygon(points);
+    painter->drawPolygon(self);
 }
 
 QColor MyItem::colorValue() const
@@ -60,4 +64,9 @@ int MyItem::radius() const
 void MyItem::setRadius(int value)
 {
     mRadius = value;
+}
+
+bool MyItem::insideItem(int x, int y)
+{
+    return self.containsPoint(QPoint(x,y), Qt::OddEvenFill);
 }

@@ -2,9 +2,6 @@ import QtQuick 2.9
 import QtQuick.Window 2.2
 import QtQuick.Controls 2.2
 import QtQuick.Layouts 1.3
-import com.myinc.MyItem 1.0
-import Model 1.0
-import "JSScripts.js" as JSScripts
 
 ApplicationWindow
 {
@@ -16,8 +13,6 @@ ApplicationWindow
 
     property int margin: 10
     property int fontSize: 16
-    property int itemSize: 100
-
 
     ColumnLayout
     {
@@ -141,157 +136,12 @@ ApplicationWindow
             }
         }//row2
 
-        //Flickable?
-        Frame {
+        Scene
+        {
             id: paintField
             Layout.fillWidth: true
             Layout.fillHeight: true
-
-            Repeater
-            {
-                id: repeater
-                objectName: "repeater"
-
-                implicitWidth: 250
-                implicitHeight: 250
-                anchors.fill: parent
-
-                model: Model
-                {
-                    manager: ItemManager
-                }
-
-                MyItem
-                {
-                    id: myItem
-                    edgeNum: model.edges
-                    color: model.color
-
-                    width: itemSize
-                    height: itemSize
-
-                    radius: width/2
-
-                    smooth: true
-
-                    x: model.x * (paintField.width - width)
-                    y: model.y * (paintField.height - height)
-
-                    //                    x: JSScripts.getRandomArbitary(width, parent.width - width)
-                    //                    y: JSScripts.getRandomArbitary(height, parent.height - height)
-
-
-
-                    ColorAnimation on color
-                    {
-                        target: myItem
-                        to: Qt.rgba(0.5, 0.5, 0.8, 1)
-                        duration: 500
-                        running: true
-                        loops: Animation.Infinite
-                    }
-
-                    RotationAnimation on rotation
-                    {
-                        from: 0
-                        to: 360
-                        duration: 5000
-                        loops: Animation.Infinite
-                        easing.type: Easing.InOutSine
-                    }
-
-                    SequentialAnimation on width
-                    {
-                        loops: Animation.Infinite
-                        PropertyAnimation
-                        {
-                            to: itemSize*0.9
-                            duration: 500
-                        }
-                        PropertyAnimation
-                        {
-                            to: itemSize
-                            duration: 500
-                        }
-                    }
-
-                    states: [
-                        State {
-                            name: "state1"
-                            PropertyChanges {target: myItem; width: itemSize; height: itemSize}
-                        },
-                        State {
-                            name: "state2"
-                            PropertyChanges {target: myItem; width: itemSize*0.1; height: itemSize*0.1}
-                        }
-
-                    ]
-                    transitions: [
-                    Transition{
-                        from: "state1";
-                        to: "state2"
-                        PropertyAnimation{
-                                target: myItem
-                                properties: "width, height"
-                                easing.type: Easing.InCirc
-                                duration: 500
-                            }
-                    }
-                    ]
-
-                    signal clicked(var i)
-
-                    state: "state1"
-
-                    MouseArea
-                    {
-                        anchors.fill: parent
-
-                        onClicked:
-                        {
-                            myItem.state = "state2"
-                            ItemManager.itemClicked(index)
-                        }
-                    }
-                }//my item
-            }//repeater
         }
+
     }
 }
-
-
-//transitions
-//states: [
-//    State {
-//        name: "state1"
-//        PropertyChanges {target: myItem; x: myItem.x; y: myItem.y}
-//    },
-//    State {
-//        name: "state2"
-//        PropertyChanges {target: myItem; x: myItem.x + margin; y: myItem.y + margin}
-//    }
-
-//]
-//transitions: [
-//Transition{
-//    from: "state1";
-//    to: "state2"
-//    PropertyAnimation{
-//            target: myItem
-//            properties: "x,y"
-//            easing.type: Easing.InCirc
-//            duration: 1000
-//        }
-//},
-//    Transition {
-//        from: "state2"
-//        to: "state1"
-//        PropertyAnimation{
-//                target: myItem
-//                properties: "x,y"
-//                easing.type: Easing.InCirc
-//                duration: 1000
-//            }
-//    }
-//]
-//end of transitions
