@@ -19,6 +19,7 @@ public:
     enum {
         EdgesRole = Qt::UserRole,
         ColorRole,
+        Color2Role,
         CoordXRole,
         CoordYRole
     };

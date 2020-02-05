@@ -24,6 +24,7 @@ void ItemManager::create(int count)
         MyItemData * item = new MyItemData();
         connect(item, &MyItemData::timeIsGone, this, &ItemManager::deleteItemByTimeOut);
         item->color = QColor(colorGenerator.generate());
+        item->color2 = QColor(colorGenerator.generate());
         item->edgeNum = getRandomFromRange(sidesNumTo, sidesNumFrom);
         item->x = getRandomFromRange(0.0, 1.0);
         item->y = getRandomFromRange(0.0, 1.0);

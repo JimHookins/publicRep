@@ -28,7 +28,8 @@ Frame
             id: myItem
             edgeNum: model.edges
             color: model.color
-            property string clr: model.color
+            property string itemColor: model.color
+            property string itemColor2: model.color2
 
             width: itemSize
             height: itemSize
@@ -70,15 +71,22 @@ Frame
             }
 
 
-//                    SequentialAnimation on color
-//                    {
-//                        ColorAnimation
-//                        {
-//                            to: Qt.rgba(200, 200, 200, 0.5)
-//                            duration: 1500
-//                            loops: Animation.Infinite
-//                        }
-//                    }
+            SequentialAnimation on color
+            {
+                loops: Animation.Infinite
+
+                ColorAnimation
+                {
+                    to: myItem.itemColor2
+                    duration: 1500
+                }
+
+                ColorAnimation
+                {
+                    to: myItem.itemColor
+                    duration: 1500
+                }
+            }
 
             RotationAnimation on rotation
             {
@@ -92,6 +100,7 @@ Frame
             SequentialAnimation on width
             {
                 loops: Animation.Infinite
+
                 PropertyAnimation
                 {
                     to: itemSize*0.9

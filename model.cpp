@@ -27,6 +27,8 @@ QVariant Model::data(const QModelIndex &index, int role) const
         return QVariant(item->edgeNum);
     case ColorRole:
         return QVariant(item->color);
+    case Color2Role:
+        return QVariant(item->color2);
     case CoordXRole:
         return QVariant(item->x);
     case CoordYRole:
@@ -49,6 +51,9 @@ bool Model::setData(const QModelIndex &index, const QVariant &value, int role)
         break;
     case ColorRole:
         item->color = value.value<QColor>();
+        break;
+    case Color2Role:
+        item->color2 = value.value<QColor>();
         break;
     case CoordXRole:
         item->x = value.toReal();
@@ -80,6 +85,7 @@ QHash<int, QByteArray> Model::roleNames() const
     QHash<int, QByteArray> names;
     names[EdgesRole] = "edges";
     names[ColorRole] = "color";
+    names[Color2Role] = "color2";
     names[CoordXRole] = "x";
     names[CoordYRole] = "y";
     return names;

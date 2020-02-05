@@ -25,6 +25,7 @@ public:
         , y(item.y)
         , edgeNum(item.edgeNum)
         , color(item.color)
+        , color2(item.color2)
         , lifespan(item.lifespan)
     {
         timerId = startTimer(lifespan);
@@ -34,6 +35,7 @@ public:
     qreal y = 0;
     int edgeNum = EDGES;
     QColor color = QColor(Qt::green);
+    QColor color2 = QColor(Qt::red);
     int lifespan = LIVE_TIME;
 
 public slots:
