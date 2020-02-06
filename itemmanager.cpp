@@ -1,19 +1,8 @@
 #include "itemmanager.h"
 
-static int getRandomFromRange(int max, int min)
-{
-    return (((qreal)qrand())/RAND_MAX) * (max - min) + min;
-}
-
-static qreal getRandomFromRange(qreal max, qreal min)
-{
-    return (((qreal)qrand())/RAND_MAX) * (max - min) + min;
-}
-
 ItemManager::ItemManager(QObject *parent) : QObject(parent)
 {
     qRegisterMetaType<MyItemData>("MyItemData");
-    colorGenerator.bounded(Qt::darkYellow, Qt::black);
 }
 
 void ItemManager::create(int count)
@@ -23,11 +12,11 @@ void ItemManager::create(int count)
     {
         MyItemData * item = new MyItemData();
         connect(item, &MyItemData::timeIsGone, this, &ItemManager::deleteItemByTimeOut);
-        item->color = QColor(colorGenerator.generate());
-        item->color2 = QColor(colorGenerator.generate());
-        item->edgeNum = getRandomFromRange(sidesNumTo, sidesNumFrom);
-        item->x = getRandomFromRange(0.0, 1.0);
-        item->y = getRandomFromRange(0.0, 1.0);
+        item->color = QColor(generator.bounded(Qt::transparent, Qt::black));
+        item->color2 = QColor(generator.bounded(Qt::transparent, Qt::black));
+        item->edgeNum = generator.bounded(sidesNumFrom, sidesNumTo+1);
+        item->x = generator.generateDouble();
+        item->y = generator.generateDouble();
         item->setLifeSpan(lifespan);
         emit preItemAppended();
         items.append(item);
@@ -113,7 +102,11 @@ bool ItemManager::setItemAt(int index, MyItemData *item)
         return false;
 
     MyItemData * oldItem = items.at(index);
-    if (oldItem->color == item->color && oldItem->edgeNum == item->edgeNum)
+    if (oldItem->color == item->color
+            && oldItem->edgeNum == item->edgeNum
+            && oldItem->color2 == item->color2
+            && oldItem->x == item->x
+            && oldItem->y == item->y)
         return false;
 
     items[index] = item;

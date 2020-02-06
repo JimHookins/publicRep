@@ -70,7 +70,6 @@ Frame
                 }
             }
 
-
             SequentialAnimation on color
             {
                 loops: Animation.Infinite

@@ -18,7 +18,9 @@ class MyItemData : public QObject
 {
     Q_OBJECT
 public:
-    MyItemData(QObject *parent = Q_NULLPTR) : QObject(parent){}
+    MyItemData(QObject *parent = Q_NULLPTR)
+        : QObject(parent)
+    {}
     MyItemData(const MyItemData &item)
         : QObject(item.parent())
         , x(item.x)
@@ -101,7 +103,7 @@ private:
     QVector<MyItemData*> items;
     quint8 sidesNumFrom = 3;
     quint8 sidesNumTo = 5;
-    QRandomGenerator colorGenerator;
+    QRandomGenerator generator;
     int lifespan = LIVE_TIME;
 };
 
