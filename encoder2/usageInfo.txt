@@ -1,0 +1,2 @@
+Usage:
+encoder %pathname%
