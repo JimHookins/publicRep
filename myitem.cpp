@@ -2,8 +2,8 @@
 #include <QPainter>
 //#include <QPolygon>
 #include <qmath.h>
-#define DEAFAULT_R  50
-#define EDGES       3
+#define DEAFAULT_R  (50)
+#define EDGES       (3)
 
 MyItem::MyItem(QQuickItem *pqi)
     : QQuickPaintedItem(pqi)

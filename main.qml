@@ -5,6 +5,7 @@ import QtQuick.Layouts 1.3
 
 ApplicationWindow
 {
+    id: appWindow
     objectName: "MainWindow"
     visible: true
     minimumWidth: 800
@@ -23,9 +24,11 @@ ApplicationWindow
 
         RowLayout
         {
+            id: settingsRow1
             Label
             {
-                //                Layout.fillWidth: true
+                id: label
+                minimumWidth: settingsRow1.minimumWidth + margin
                 text: "Polygon's initial count: " + initialCountSlider.value
                 font.pixelSize: fontSize
                 padding: 10

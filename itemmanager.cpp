@@ -78,6 +78,7 @@ void ItemManager::lifeSpanChanged(int value)
 void ItemManager::deleteItem(int index)
 {
     emit preItemRemoved(index, index);
+    items.at(index)->deleteLater();
     items.removeAt(index);
     emit postItemRemoved();
     qDebug() << "Item" << index << "deleted";

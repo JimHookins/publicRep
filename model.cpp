@@ -63,7 +63,7 @@ bool Model::setData(const QModelIndex &index, const QVariant &value, int role)
         break;
     }
 
-    if (pItemManager->setItemAt(index.row(), item))
+//    if (pItemManager->setItemAt(index.row(), item))
     {
         emit dataChanged(index, index, QVector<int>() << role);
         return true;
