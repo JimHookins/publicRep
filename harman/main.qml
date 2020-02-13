@@ -24,11 +24,8 @@ ApplicationWindow
 
         RowLayout
         {
-            id: settingsRow1
             Label
             {
-                id: label
-                minimumWidth: settingsRow1.minimumWidth + margin
                 text: "Polygon's initial count: " + initialCountSlider.value
                 font.pixelSize: fontSize
                 padding: 10
