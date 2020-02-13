@@ -14,6 +14,7 @@ ApplicationWindow
 
     property int margin: 10
     property int fontSize: 16
+    property int labelWidth: 220
 
     ColumnLayout
     {
@@ -26,6 +27,9 @@ ApplicationWindow
         {
             Label
             {
+                id: label1
+                Layout.minimumWidth: labelWidth
+                Layout.maximumWidth: labelWidth
                 text: "Polygon's initial count: " + initialCountSlider.value
                 font.pixelSize: fontSize
                 padding: 10
@@ -70,6 +74,8 @@ ApplicationWindow
 
             Label
             {
+                Layout.minimumWidth: labelWidth
+                Layout.maximumWidth: labelWidth
                 text: "Polygon's sides range: (" + Math.round(rangeSlider.first.value) + ","
                       + Math.round(rangeSlider.second.value) + ")"
                 font.pixelSize: fontSize
@@ -108,6 +114,8 @@ ApplicationWindow
 
             Label
             {
+                Layout.minimumWidth: labelWidth
+                Layout.maximumWidth: labelWidth
                 text: "Polygon's lifespan: " + lifeSpanSlider.value
                 font.pixelSize: fontSize
                 padding: 10
