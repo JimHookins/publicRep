@@ -75,48 +75,48 @@ Frame
                 }
             }
 
-//            SequentialAnimation on color
-//            {
-//                loops: Animation.Infinite
+            SequentialAnimation on color
+            {
+                loops: Animation.Infinite
 
-//                ColorAnimation
-//                {
-//                    to: myItem.itemColor2
-//                    duration: 1500
-//                }
+                ColorAnimation
+                {
+                    to: myItem.itemColor2
+                    duration: 1500
+                }
 
-//                ColorAnimation
-//                {
-//                    to: myItem.itemColor
-//                    duration: 1500
-//                }
-//            }
+                ColorAnimation
+                {
+                    to: myItem.itemColor
+                    duration: 1500
+                }
+            }
 
-//            RotationAnimation on rotation
-//            {
-//                from: 0
-//                to: 360
-//                duration: 15000
-//                loops: Animation.Infinite
-//                easing.type: Easing.Linear
-//            }
+            RotationAnimation on rotation
+            {
+                from: 0
+                to: 360
+                duration: 15000
+                loops: Animation.Infinite
+                easing.type: Easing.Linear
+            }
 
-//            SequentialAnimation on width
-//            {
-//                loops: Animation.Infinite
+            SequentialAnimation on width
+            {
+                loops: Animation.Infinite
 
-//                PropertyAnimation
-//                {
-//                    to: itemSize*0.9
-//                    duration: 500
+                PropertyAnimation
+                {
+                    to: itemSize*0.9
+                    duration: 500
 
-//                }
-//                PropertyAnimation
-//                {
-//                    to: itemSize
-//                    duration: 500
-//                }
-//            }
+                }
+                PropertyAnimation
+                {
+                    to: itemSize
+                    duration: 500
+                }
+            }
 
             states:
                 [
