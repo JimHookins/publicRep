@@ -48,12 +48,17 @@ Frame
             MouseArea
             {
                 anchors.fill: parent
+                propagateComposedEvents: true
 
                 onClicked:
                 {
-                    console.log("Mouse: " + mouseX + ", " + mouseY)
-                    if (myItem.insideItem(mouseX, mouseY))
+                    console.log("Mouse: " + mouse.x + ", " + mouse.y)
+                    if (myItem.insideItem(mouse.x, mouse.y))
+                    {
                         myItem.state = "dissapearing"
+                        mouse.accepted = true
+                    }
+                    mouse.accepted = false
                 }
             }
 
@@ -70,48 +75,48 @@ Frame
                 }
             }
 
-            SequentialAnimation on color
-            {
-                loops: Animation.Infinite
+//            SequentialAnimation on color
+//            {
+//                loops: Animation.Infinite
 
-                ColorAnimation
-                {
-                    to: myItem.itemColor2
-                    duration: 1500
-                }
+//                ColorAnimation
+//                {
+//                    to: myItem.itemColor2
+//                    duration: 1500
+//                }
 
-                ColorAnimation
-                {
-                    to: myItem.itemColor
-                    duration: 1500
-                }
-            }
+//                ColorAnimation
+//                {
+//                    to: myItem.itemColor
+//                    duration: 1500
+//                }
+//            }
 
-            RotationAnimation on rotation
-            {
-                from: 0
-                to: 360
-                duration: 15000
-                loops: Animation.Infinite
-                easing.type: Easing.Linear
-            }
+//            RotationAnimation on rotation
+//            {
+//                from: 0
+//                to: 360
+//                duration: 15000
+//                loops: Animation.Infinite
+//                easing.type: Easing.Linear
+//            }
 
-            SequentialAnimation on width
-            {
-                loops: Animation.Infinite
+//            SequentialAnimation on width
+//            {
+//                loops: Animation.Infinite
 
-                PropertyAnimation
-                {
-                    to: itemSize*0.9
-                    duration: 500
+//                PropertyAnimation
+//                {
+//                    to: itemSize*0.9
+//                    duration: 500
 
-                }
-                PropertyAnimation
-                {
-                    to: itemSize
-                    duration: 500
-                }
-            }
+//                }
+//                PropertyAnimation
+//                {
+//                    to: itemSize
+//                    duration: 500
+//                }
+//            }
 
             states:
                 [
