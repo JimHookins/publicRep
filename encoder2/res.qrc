@@ -1,5 +1,0 @@
-<RCC>
-    <qresource prefix="/text">
-        <file alias="usage">usageInfo.txt</file>
-    </qresource>
-</RCC>
